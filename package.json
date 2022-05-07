@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ericsj/survey/issues"
   },
-  "homepage": "https://github.com/ericsj/survey#readme"
+  "homepage": "https://github.com/ericsj/survey#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^4.1.2"
+  }
 }
