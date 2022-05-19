@@ -22,7 +22,7 @@ const makeAddAccountRepository = (): AddAccountRepository => {
       const fakeAccount = {
         id: 'valid_id',
         name: 'valid name',
-        email: 'valid_mail',
+        email: 'valid_mail@mail.com',
         password: 'valid_password'
       }
       return await new Promise((resolve) => resolve(fakeAccount))
@@ -47,7 +47,7 @@ describe('DbAddAccount UseCase', () => {
     const encryptSpy = jest.spyOn(encrypterStub, 'encrypt')
     const accountData = {
       name: 'valid name',
-      email: 'valid_mail',
+      email: 'valid_mail@mail.com',
       password: 'valid_password'
     }
     await sut.add(accountData)
@@ -59,7 +59,7 @@ describe('DbAddAccount UseCase', () => {
     jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
     const accountData = {
       name: 'valid name',
-      email: 'valid_mail',
+      email: 'valid_mail@mail.com',
       password: 'valid_password'
     }
     const promise = sut.add(accountData)
@@ -71,7 +71,7 @@ describe('DbAddAccount UseCase', () => {
     const encryptSpy = jest.spyOn(addAccountRepositoryStub, 'add')
     const accountData = {
       name: 'valid name',
-      email: 'valid_mail',
+      email: 'valid_mail@mail.com',
       password: 'valid_password'
     }
     await sut.add(accountData)
@@ -83,10 +83,21 @@ describe('DbAddAccount UseCase', () => {
     jest.spyOn(addAccountRepositoryStub, 'add').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
     const accountData = {
       name: 'valid name',
-      email: 'valid_mail',
+      email: 'valid_mail@mail.com',
       password: 'valid_password'
     }
     const promise = sut.add(accountData)
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Should return an account on success', async () => {
+    const { sut } = makeSut()
+    const accountData = {
+      name: 'valid name',
+      email: 'valid_mail@mail.com',
+      password: 'valid_password'
+    }
+    const account = await sut.add(accountData)
+    expect(account).toEqual({ ...account, id: 'valid_id' })
   })
 })
