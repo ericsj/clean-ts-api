@@ -7,5 +7,6 @@ module.exports = {
   transform: {
     '.+\\.ts$': 'ts-jest'
   },
+  testTimeout: 100000,
   preset: '@shelf/jest-mongodb'
 }
