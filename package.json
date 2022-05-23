@@ -9,19 +9,18 @@
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage",
-    "prepare": "husky install"
+    "test:ci": "npm test -- --coverage"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ericsj/survey.git"
+    "url": "git+https://github.com/ericsj/clean-ts-api.git"
   },
   "author": "Eric Segala Jovelli",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ericsj/survey/issues"
+    "url": "https://github.com/ericsj/clean-ts-api/issues"
   },
-  "homepage": "https://github.com/ericsj/survey#readme",
+  "homepage": "https://github.com/ericsj/clean-ts-api#readme",
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.1.3",
     "@types/bcrypt": "^3.0.0",
