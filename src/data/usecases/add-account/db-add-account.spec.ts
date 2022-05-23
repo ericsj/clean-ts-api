@@ -1,5 +1,5 @@
 import { DbAddAccount } from './db-add-account'
-import { Encrypter, AddAccountModel, AddAccountRepository } from './db-add-account-protocols'
+import { Encrypter, AddAccountModel, AccountModel, AddAccountRepository } from './db-add-account-protocols'
 
 interface SutTypes {
   sut: DbAddAccount
@@ -18,8 +18,14 @@ const makeEncrypter = (): Encrypter => {
 
 const makeAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
-    async add (accountData: AddAccountModel): Promise<true> {
-      return await new Promise((resolve) => resolve(true))
+    async add (accountData: AddAccountModel): Promise<AccountModel> {
+      const fakeAccount = {
+        id: 'valid_id',
+        name: 'valid name',
+        email: 'valid_mail@mail.com',
+        password: 'valid_password'
+      }
+      return await new Promise((resolve) => resolve(fakeAccount))
     }
   }
   return new AddAccountRepositoryStub()
@@ -91,7 +97,7 @@ describe('DbAddAccount UseCase', () => {
       email: 'valid_mail@mail.com',
       password: 'valid_password'
     }
-    const result = await sut.add(accountData)
-    expect(result).toEqual(true)
+    const account = await sut.add(accountData)
+    expect(account).toEqual({ ...account, id: 'valid_id' })
   })
 })
