@@ -45,7 +45,7 @@
     "sucrase": "^3.21.0",
     "supertest": "^3.4.2",
     "ts-jest": "^24.3.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.9.7"
   },
   "dependencies": {
     "bcrypt": "^3.0.7",
