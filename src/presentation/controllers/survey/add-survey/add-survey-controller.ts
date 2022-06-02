@@ -1,6 +1,6 @@
 import {
   AddSurvey, Controller, HttpRequest, HttpResponse, Validation,
-  badRequest, serverError
+  badRequest, serverError, noContent
 } from './add-survey-controller-protocols'
 
 export class AddSurveyController implements Controller {
@@ -20,7 +20,7 @@ export class AddSurveyController implements Controller {
         question,
         answers
       })
-      return null
+      return noContent()
     } catch (error) {
       return serverError(error)
     }
