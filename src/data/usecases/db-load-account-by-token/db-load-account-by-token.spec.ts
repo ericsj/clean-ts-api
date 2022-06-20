@@ -75,4 +75,18 @@ describe('DbLoadAccountByToken Usecase', () => {
     const account = await sut.load('any_token')
     expect(account).toEqual(makeFakeAccount())
   })
+
+  test('Should throw if Decrypter throws', async () => {
+    const { sut, decrypterStub } = makeSut()
+    jest.spyOn(decrypterStub, 'decrypt').mockRejectedValueOnce(new Error())
+    const account = sut.load('any_token')
+    await expect(account).rejects.toThrow()
+  })
+
+  test('Should throw if LoadAcccountByTokenRepository throws', async () => {
+    const { sut, loadAcccountByTokenRepositoryStub } = makeSut()
+    jest.spyOn(loadAcccountByTokenRepositoryStub, 'loadByToken').mockRejectedValueOnce(new Error())
+    const account = sut.load('any_token')
+    await expect(account).rejects.toThrow()
+  })
 })
